@@ -8,7 +8,7 @@ import net.neoforged.fml.config.ModConfig;
 
 @Mod(QuitOrNot.MODID)
 public class QuitOrNot {
-    public static final String MODID = "quitornot";
+    public static final String MODID = "quitornot_reborn";
 
     public QuitOrNot(IEventBus bus, ModContainer container) {
         container.registerConfig(ModConfig.Type.CLIENT, ClientConfig.CFG);
