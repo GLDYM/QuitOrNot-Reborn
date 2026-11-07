@@ -1,16 +1,18 @@
-package com.plr.quitornot.client.toast;
+package dev.polaris_light.quitornot.client.toast;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.toasts.Toast;
-import net.minecraft.client.gui.components.toasts.ToastComponent;
+import net.minecraft.client.gui.components.toasts.ToastManager;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public abstract class BaseToast implements Toast {
-    protected static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("quitornot", "textures/gui/toasts.png");
+    protected static final Identifier texture = Identifier.fromNamespaceAndPath("quitornot", "textures/gui/toasts.png");
     protected final Component title;
     protected final Component message;
     protected final long keepTime;
+    private boolean hidden;
 
     protected BaseToast(Component title, Component message, long keepTime) {
         this.title = title;
@@ -19,10 +21,21 @@ public abstract class BaseToast implements Toast {
     }
 
     @Override
-    public Visibility render(GuiGraphics context, ToastComponent manager, long startTime) {
-        drawToast(context, manager);
-        return startTime >= keepTime ? Visibility.HIDE : Visibility.SHOW;
+    public Visibility getWantedVisibility() {
+        return hidden ? Visibility.HIDE : Visibility.SHOW;
     }
 
-    protected abstract void drawToast(GuiGraphics context, ToastComponent manager);
+    @Override
+    public void update(ToastManager manager, long fullyVisibleForMs) {
+        if (fullyVisibleForMs >= keepTime) {
+            hidden = true;
+        }
+    }
+
+    @Override
+    public void extractRenderState(GuiGraphicsExtractor graphics, Font font, long fullyVisibleForMs) {
+        drawToast(graphics, font);
+    }
+
+    protected abstract void drawToast(GuiGraphicsExtractor graphics, Font font);
 }

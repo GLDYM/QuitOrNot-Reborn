@@ -14,12 +14,10 @@ As a client-side mod, it pops up a confirm screen | toast to avoid mistakenly qu
 
 ## How 2 Install
 
-Fabric: Install the mod, along with Fabric API
-
-(Neo)Forge: Install the mod, no extra dependency needed
+NeoForge 26.1.2: Install the mod, no extra dependency needed.
 
 ## License
 
 `QuitConfirm`(`QuitOrNot`'s source project) is licensed under the MIT License.
 
-`QuitOrNot` is licensed under the Nova Relay License 1.0.
+`QuitOrNot-Reborn` is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0).

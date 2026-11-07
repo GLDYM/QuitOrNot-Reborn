@@ -1,4 +1,4 @@
-package com.plr.quitornot.client.event.api;
+package dev.polaris_light.quitornot.client.event.api;
 
 import net.neoforged.bus.api.Event;
 

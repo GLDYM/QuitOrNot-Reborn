@@ -1,8 +1,8 @@
-package com.plr.quitornot.client.screen.confirm.style;
+package dev.polaris_light.quitornot.client.screen.confirm.style;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
@@ -37,25 +37,25 @@ public final class ClassicStyle extends BaseStyle {
     }
 
     @Override
-    public void render(Minecraft client, Font textRenderer, Screen screen, Component title, Component message, GuiGraphics ctx, int mouseX, int mouseY, float delta) {
-        this.renderBackground(ctx, screen);
-        drawTextAndMessage(textRenderer, screen, title, message, ctx);
+    public void render(Minecraft client, Font textRenderer, Screen screen, Component title, Component message, GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
+        this.renderBackground(graphics, screen);
+        drawTextAndMessage(textRenderer, screen, title, message, graphics);
     }
 
-    public void renderBackground(GuiGraphics ctx, Screen screen) {
+    public void renderBackground(GuiGraphicsExtractor graphics, Screen screen) {
         if (Minecraft.getInstance().level != null) {
-            ctx.fillGradient(0, 0, screen.width, screen.height, -1072689136, -804253680);
+            graphics.fillGradient(0, 0, screen.width, screen.height, -1072689136, -804253680);
         } else {
-            screen.renderTransparentBackground(ctx);
+            screen.extractTransparentBackground(graphics);
         }
     }
 
-    private void drawTextAndMessage(Font textRenderer, Screen screen, Component title, Component message, GuiGraphics ctx) {
-        ctx.drawCenteredString(textRenderer, title,
+    private void drawTextAndMessage(Font textRenderer, Screen screen, Component title, Component message, GuiGraphicsExtractor graphics) {
+        graphics.centeredText(textRenderer, title,
                 screen.width / 2,
                 titleTMargin,
                 16777215);
-        ctx.drawCenteredString(textRenderer, message,
+        graphics.centeredText(textRenderer, message,
                 screen.width / 2,
                 screen.height / 2 - 30,
                 10526880);

@@ -1,13 +1,12 @@
-package com.plr.quitornot.client.mixin;
+package dev.polaris_light.quitornot.client.mixin;
 
 import com.mojang.blaze3d.platform.Window;
-import com.plr.quitornot.client.event.api.CancelableEvent;
-import com.plr.quitornot.client.event.impl.ClientScheduleStopEvent;
-import com.plr.quitornot.client.screen.confirm.ConfirmScreen;
+import dev.polaris_light.quitornot.client.event.api.CancelableEvent;
+import dev.polaris_light.quitornot.client.event.impl.ClientScheduleStopEvent;
+import dev.polaris_light.quitornot.client.screen.confirm.ConfirmScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.neoforged.neoforge.common.NeoForge;
-import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,7 +22,6 @@ public abstract class MixinMinecraft {
     private Window window;
 
     @Shadow
-    @Nullable
     public Screen screen;
 
     @Inject(method = "stop", at = @At("HEAD"), cancellable = true)
@@ -32,13 +30,14 @@ public abstract class MixinMinecraft {
             if (c.isConfirmed()) {
                 return;
             }
+            GLFW.glfwSetWindowShouldClose(this.window.handle(), false);
             ci.cancel();
             return;
         }
         final CancelableEvent event = new ClientScheduleStopEvent();
         NeoForge.EVENT_BUS.post(event);
         if (event.isCanceled()) {
-            GLFW.glfwSetWindowShouldClose(this.window.getWindow(), false);
+            GLFW.glfwSetWindowShouldClose(this.window.handle(), false);
             ci.cancel();
         }
     }

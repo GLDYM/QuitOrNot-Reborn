@@ -1,7 +1,7 @@
-package com.plr.quitornot.client.handler;
+package dev.polaris_light.quitornot.client.handler;
 
-import com.plr.quitornot.client.config.ClientConfig;
-import com.plr.quitornot.client.toast.QuitToast;
+import dev.polaris_light.quitornot.client.config.ClientConfig;
+import dev.polaris_light.quitornot.client.toast.QuitToast;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 
@@ -25,7 +25,7 @@ public class ToastQuitHandler {
         if (state == State.INACTIVE) {
             startTime = millis;
             state = State.ACTIVE;
-            Minecraft.getInstance().getToasts().addToast(new QuitToast(message, ClientConfig.toastKeepTime.get()));
+            Minecraft.getInstance().getToastManager().addToast(new QuitToast(message, ClientConfig.toastKeepTime.get()));
             return true;
         }
         return millis < ClientConfig.toastDelay.get() + startTime || millis > ClientConfig.toastKeepTime.get() + startTime;

@@ -1,13 +1,12 @@
-package com.plr.quitornot.client.screen.confirm;
+package dev.polaris_light.quitornot.client.screen.confirm;
 
-import com.plr.quitornot.client.config.ClientConfig;
-import com.plr.quitornot.client.screen.confirm.style.BaseStyle;
-import net.minecraft.client.gui.GuiGraphics;
+import dev.polaris_light.quitornot.client.config.ClientConfig;
+import dev.polaris_light.quitornot.client.screen.confirm.style.BaseStyle;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.input.KeyEvent;
 import net.minecraft.network.chat.Component;
-import org.lwjgl.glfw.GLFW;
 
 public final class ConfirmScreen extends Screen {
     private final Component message;
@@ -63,19 +62,23 @@ public final class ConfirmScreen extends Screen {
     }
 
     @Override
-    public void render(GuiGraphics context, int mouseX, int mouseY, float delta) {
-        style.render(this.minecraft, this.font, this, title, message, context, mouseX, mouseY, delta);
-        for (Renderable renderable : this.renderables) {
-            renderable.render(context, mouseX, mouseY, delta);
-        }
+    public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
+        // The selected style draws its own background in extractRenderState.
     }
 
     @Override
-    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        if (ClientConfig.enableKey.get() && keyCode == GLFW.GLFW_KEY_ENTER && isActive()) {
+    public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
+        style.render(this.minecraft, this.font, this, title, message, graphics, mouseX, mouseY, delta);
+        super.extractRenderState(graphics, mouseX, mouseY, delta);
+    }
+
+    @Override
+    public boolean keyPressed(KeyEvent event) {
+        if (ClientConfig.enableKey.get() && event.isConfirmation() && isActive()) {
             onConfirm.run();
+            return true;
         }
-        return super.keyPressed(keyCode, scanCode, modifiers);
+        return super.keyPressed(event);
     }
 
     @Override

@@ -1,13 +1,14 @@
-package com.plr.quitornot.client.event.handler;
+package dev.polaris_light.quitornot.client.event.handler;
 
-import com.plr.quitornot.client.config.ClientConfig;
-import com.plr.quitornot.client.event.impl.ButtonPressEvent;
-import com.plr.quitornot.client.event.impl.ClientScheduleStopEvent;
-import com.plr.quitornot.client.handler.ToastQuitHandler;
-import com.plr.quitornot.client.screen.confirm.ConfirmScreen;
+import dev.polaris_light.quitornot.client.config.ClientConfig;
+import dev.polaris_light.quitornot.client.event.impl.ButtonPressEvent;
+import dev.polaris_light.quitornot.client.event.impl.ClientScheduleStopEvent;
+import dev.polaris_light.quitornot.client.handler.ToastQuitHandler;
+import dev.polaris_light.quitornot.client.screen.confirm.ConfirmScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.PauseScreen;
+import net.minecraft.client.input.InputWithModifiers;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.neoforged.api.distmarker.Dist;
@@ -16,6 +17,18 @@ import net.neoforged.fml.common.EventBusSubscriber;
 
 @EventBusSubscriber(Dist.CLIENT)
 public class ForgeEventHandler {
+    private static final InputWithModifiers NO_INPUT = new InputWithModifiers() {
+        @Override
+        public int input() {
+            return 0;
+        }
+
+        @Override
+        public int modifiers() {
+            return 0;
+        }
+    };
+
     private static final ToastQuitHandler toastInFinalQuitHandler = new ToastQuitHandler(Component.translatable("toast.quitornot.confirm.title.game"));
     private static final ToastQuitHandler toastInSinglePlayerQuitHandle = new ToastQuitHandler(Component.translatable("toast.quitornot.confirm.title.singleplayer"));
     private static final ToastQuitHandler toastInMultiplayerQuitHandle = new ToastQuitHandler(Component.translatable("toast.quitornot.confirm.title.multiplayer"));
@@ -38,7 +51,7 @@ public class ForgeEventHandler {
                 return;
             }
             if (ClientConfig.confirmTypeQuitSinglePlayer.get() == ClientConfig.ConfirmType.SCREEN) {
-                Minecraft.getInstance().setScreen(new ConfirmScreen(Minecraft.getInstance().screen, Component.translatable("screen.quitornot.confirm.title.singleplayer"), button::onPress));
+                Minecraft.getInstance().setScreen(new ConfirmScreen(Minecraft.getInstance().screen, Component.translatable("screen.quitornot.confirm.title.singleplayer"), () -> press(button)));
                 event.setCanceled(true);
                 return;
             }
@@ -50,10 +63,14 @@ public class ForgeEventHandler {
                 return;
             }
             if (ClientConfig.confirmTypeQuitMultiplayer.get() == ClientConfig.ConfirmType.SCREEN) {
-                Minecraft.getInstance().setScreen(new ConfirmScreen(Minecraft.getInstance().screen, Component.translatable("screen.quitornot.confirm.title.multiplayer"), button::onPress));
+                Minecraft.getInstance().setScreen(new ConfirmScreen(Minecraft.getInstance().screen, Component.translatable("screen.quitornot.confirm.title.multiplayer"), () -> press(button)));
                 event.setCanceled(true);
             }
         }
+    }
+
+    private static void press(Button button) {
+        button.onPress(NO_INPUT);
     }
 
     @SubscribeEvent

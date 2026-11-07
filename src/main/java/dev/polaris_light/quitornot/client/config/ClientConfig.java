@@ -1,8 +1,8 @@
-package com.plr.quitornot.client.config;
+package dev.polaris_light.quitornot.client.config;
 
-import com.plr.quitornot.client.screen.confirm.style.BaseStyle;
-import com.plr.quitornot.client.screen.confirm.style.BedrockStyle;
-import com.plr.quitornot.client.screen.confirm.style.ClassicStyle;
+import dev.polaris_light.quitornot.client.screen.confirm.style.BaseStyle;
+import dev.polaris_light.quitornot.client.screen.confirm.style.BedrockStyle;
+import dev.polaris_light.quitornot.client.screen.confirm.style.ClassicStyle;
 import net.minecraft.network.chat.Component;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
