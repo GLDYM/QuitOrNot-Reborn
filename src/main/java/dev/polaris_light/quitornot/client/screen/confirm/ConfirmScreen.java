@@ -1,7 +1,7 @@
-package com.plr.quitornot.client.screen.confirm;
+package dev.polaris_light.quitornot.client.screen.confirm;
 
-import com.plr.quitornot.client.config.ClientConfig;
-import com.plr.quitornot.client.screen.confirm.style.BaseStyle;
+import dev.polaris_light.quitornot.client.config.ClientConfig;
+import dev.polaris_light.quitornot.client.screen.confirm.style.BaseStyle;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Renderable;

@@ -1,4 +1,4 @@
-package com.plr.quitornot.client.screen.confirm.style;
+package dev.polaris_light.quitornot.client.screen.confirm.style;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;

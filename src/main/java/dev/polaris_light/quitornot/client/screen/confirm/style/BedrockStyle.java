@@ -1,4 +1,4 @@
-package com.plr.quitornot.client.screen.confirm.style;
+package dev.polaris_light.quitornot.client.screen.confirm.style;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;

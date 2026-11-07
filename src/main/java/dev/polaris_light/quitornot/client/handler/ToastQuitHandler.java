@@ -1,7 +1,7 @@
-package com.plr.quitornot.client.handler;
+package dev.polaris_light.quitornot.client.handler;
 
-import com.plr.quitornot.client.config.ClientConfig;
-import com.plr.quitornot.client.toast.QuitToast;
+import dev.polaris_light.quitornot.client.config.ClientConfig;
+import dev.polaris_light.quitornot.client.toast.QuitToast;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 

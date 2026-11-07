@@ -1,9 +1,9 @@
-package com.plr.quitornot.client.mixin;
+package dev.polaris_light.quitornot.client.mixin;
 
 
-import com.plr.quitornot.client.event.api.CancelableEvent;
-import com.plr.quitornot.client.event.impl.ButtonPressEvent;
-import com.plr.quitornot.client.screen.confirm.ConfirmScreen;
+import dev.polaris_light.quitornot.client.event.api.CancelableEvent;
+import dev.polaris_light.quitornot.client.event.impl.ButtonPressEvent;
+import dev.polaris_light.quitornot.client.screen.confirm.ConfirmScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.components.Button;

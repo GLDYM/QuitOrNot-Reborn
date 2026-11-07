@@ -1,9 +1,9 @@
-package com.plr.quitornot.client.mixin;
+package dev.polaris_light.quitornot.client.mixin;
 
 import com.mojang.blaze3d.platform.Window;
-import com.plr.quitornot.client.event.api.CancelableEvent;
-import com.plr.quitornot.client.event.impl.ClientScheduleStopEvent;
-import com.plr.quitornot.client.screen.confirm.ConfirmScreen;
+import dev.polaris_light.quitornot.client.event.api.CancelableEvent;
+import dev.polaris_light.quitornot.client.event.impl.ClientScheduleStopEvent;
+import dev.polaris_light.quitornot.client.screen.confirm.ConfirmScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.neoforged.neoforge.common.NeoForge;

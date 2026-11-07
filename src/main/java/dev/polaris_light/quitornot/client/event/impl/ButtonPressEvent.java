@@ -1,6 +1,6 @@
-package com.plr.quitornot.client.event.impl;
+package dev.polaris_light.quitornot.client.event.impl;
 
-import com.plr.quitornot.client.event.api.CancelableEvent;
+import dev.polaris_light.quitornot.client.event.api.CancelableEvent;
 import net.minecraft.client.gui.components.Button;
 
 public class ButtonPressEvent extends CancelableEvent {

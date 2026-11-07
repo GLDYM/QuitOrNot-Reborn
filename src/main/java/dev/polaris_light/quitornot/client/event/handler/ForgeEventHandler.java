@@ -1,10 +1,10 @@
-package com.plr.quitornot.client.event.handler;
+package dev.polaris_light.quitornot.client.event.handler;
 
-import com.plr.quitornot.client.config.ClientConfig;
-import com.plr.quitornot.client.event.impl.ButtonPressEvent;
-import com.plr.quitornot.client.event.impl.ClientScheduleStopEvent;
-import com.plr.quitornot.client.handler.ToastQuitHandler;
-import com.plr.quitornot.client.screen.confirm.ConfirmScreen;
+import dev.polaris_light.quitornot.client.config.ClientConfig;
+import dev.polaris_light.quitornot.client.event.impl.ButtonPressEvent;
+import dev.polaris_light.quitornot.client.event.impl.ClientScheduleStopEvent;
+import dev.polaris_light.quitornot.client.handler.ToastQuitHandler;
+import dev.polaris_light.quitornot.client.screen.confirm.ConfirmScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.PauseScreen;

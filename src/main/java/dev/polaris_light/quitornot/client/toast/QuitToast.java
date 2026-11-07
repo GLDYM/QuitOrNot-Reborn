@@ -1,4 +1,4 @@
-package com.plr.quitornot.client.toast;
+package dev.polaris_light.quitornot.client.toast;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.toasts.ToastComponent;
